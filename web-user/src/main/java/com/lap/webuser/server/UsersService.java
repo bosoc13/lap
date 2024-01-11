@@ -1,4 +1,4 @@
-package com.lap.webadmin.service;
+package com.lap.webuser.server;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lap.common.entity.Users;
-import com.lap.webadmin.repository.UsersRepository;
+import com.lap.webuser.repositor.UsersRepository;
 
 @Service
 @Transactional
@@ -29,7 +29,6 @@ public class UsersService {
 	}
 
 	public List<Users> findAllUsers() {
-		// TODO Auto-generated method stub
 		return userRepository.findAll();
 	}
 }

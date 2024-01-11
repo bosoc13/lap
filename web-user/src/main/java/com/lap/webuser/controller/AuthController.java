@@ -1,4 +1,4 @@
-package com.lap.webadmin.controller;
+package com.lap.webuser.controller;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.lap.common.entity.Users;
-import com.lap.webadmin.service.UsersService;
+import com.lap.webuser.server.UsersService;
 
 import jakarta.validation.Valid;
 
@@ -50,15 +50,15 @@ public class AuthController {
             model.addAttribute("user", user);
             return "/register";
         }
-        user.setRole("ADMIN");
+        user.setRole("USER");
         usersService.save(user);
         return "redirect:/register?success";
     }
 	
-    @GetMapping("/home")
+    @GetMapping("/users")
     public String users(Model model){
         List<Users> users = usersService.findAllUsers();
         model.addAttribute("users", users);
-        return "home";
+        return "users";
     }
 }
