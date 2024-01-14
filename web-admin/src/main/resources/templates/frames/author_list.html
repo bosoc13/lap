@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div align="center">
+		<h2>Author List</h2>
+		<a href="/author/add" class="btn btn-primary">Create New Author</a> <br />
+		<br />
+		<table class="table">
+			<thead>
+				<tr class="table-info">
+					<th scope="col">Author ID</th>
+					<th scope="col">Author Name</th>
+					<th scope="col">Pseudonym</th>
+					<th scope="col">Year Birth</th>
+					<th scope="col">Address</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="author : ${authors}">
+					<th th:text="${author.authorId}" scope="row"></th>
+					<td th:text="${author.name}"></td>
+					<td th:text="${author.pseudonym}"></td>
+					<td th:text="${author.yearBirth}"></td>
+					<td th:text="${author.address}"></td>
+					<td><a th:href="@{'/author/edit/' + ${author.authorId}}" class="bi bi-trash">Edit</a>
+						&nbsp;&nbsp;&nbsp; 
+						<a th:href="@{'/author/delete/' + ${author.authorId}}" class="bi bi-pen">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<br />
+	<div class="container">
+		<div class="row col-md-8 offset-md-2">
+			<div class="card">
+				<div th:if="${param.success}">
+					<div class="alert alert-info">You have successfully add new books</div>
+				</div>
+   				<div class="card-header">
+					<h2 class="text-center">Add by file</h2>
+				</div>
+				<form method="post" role="form" th:action="@{/books/import}" th:object="${books}" enctype = "multipart/form-data">
+		            <div class="mb-3">
+					  <label for="formFile" class="form-label">input file</label>
+					  <input class="form-control" type="file" id="fileImport" th:field="*{fileImport}">
+					  <p th:errors="*{fileImport}" class="text-danger" th:if="${#fields.hasErrors('fileImport')}"></p>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary" type="submit">Import</button>
+					</div>
+				</form>
+				<div class="card-header">
+					<h2 class="text-center">Add by input</h2>
+				</div>
+				<div class="card-body">
+					<form method="post" role="form" th:action="@{/books/add}" th:object="${books}">
+						<div class="form-group mb-3">
+							<label class="form-label">* Book Name</label> 
+							<input class="form-control" id="name" name="name" placeholder="Enter full name" th:field="*{name}" type="text" />
+							<p th:errors="*{name}" class="text-danger" th:if="${#fields.hasErrors('name')}"></p>
+						</div>
+
+						<div class="form-group mb-3">
+							<label class="form-label">category</label> 
+							<select class="form-control" th:field="*{categoryId}">
+								<option value="" selected="selected">Other</option>
+							    <option th:each="category : ${categorys}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+							</select>
+							<p th:errors="*{categoryId}" class="text-danger"
+								th:if="${#fields.hasErrors('categoryId')}"></p>
+						</div>
+						
+						<div class="form-group mb-3">
+							<label class="form-label">* Author</label> 
+							<select class="form-control" th:field="*{authorId}">
+							    <option th:each="author : ${authors}" th:value="${author.authorId}" th:text="${author.toString()}"></option>
+							</select>
+							<p th:errors="*{authorId}" class="text-danger"
+								th:if="${#fields.hasErrors('authorId')}"></p>
+						</div>
+
+						<div class="form-group mb-3">
+							<label class="form-label">* Publishing year</label> 
+							<input class="form-control" id="publishingYear" name="publishingYear"
+								placeholder="Publishing Year" th:field="*{publishingYear}"
+								type="number" />
+							<p th:errors="*{publishingYear}" class="text-danger"
+								th:if="${#fields.hasErrors('publishingYear')}"></p>
+						</div>
+
+						<div class="form-group">
+							<button class="btn btn-primary" type="submit">Add new</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

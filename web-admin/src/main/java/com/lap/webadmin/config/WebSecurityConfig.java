@@ -29,12 +29,12 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/index").permitAll()
-                                .requestMatchers("/home").hasRole("ADMIN")
+                                .anyRequest().hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/home")
+                                .defaultSuccessUrl("/addBooks")
                                 .permitAll()
                 ).logout(
                         logout -> logout

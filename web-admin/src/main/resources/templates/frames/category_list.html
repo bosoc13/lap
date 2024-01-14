@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div align="center">
+		<h2>Category List</h2>
+		<a href="/category/add" class="btn btn-primary">Create New Category</a> <br />
+		<br />
+		<table class="table">
+			<thead>
+				<tr class="table-info">
+					<th scope="col">Category ID</th>
+					<th scope="col">Category Name</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="category : ${categorys}">
+					<th th:text="${category.categoryId}" scope="row"></th>
+					<td th:text="${category.categoryName}"></td>
+					<td><a th:href="@{'/category/edit/' + ${category.categoryId}}" class="bi bi-trash">Edit</a>
+						&nbsp;&nbsp;&nbsp; 
+						<a th:href="@{'/category/delete/' + ${category.categoryId}}" class="bi bi-pen">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
